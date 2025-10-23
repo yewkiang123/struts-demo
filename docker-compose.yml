@@ -1,0 +1,20 @@
+services:
+  echo-vuln:
+    image: python:3.11
+    container_name: echo-vuln
+    working_dir: /app
+    volumes:
+      - ./vuln:/app
+    command: bash -c "pip install flask && python app.py"
+    ports:
+      - "5001:5000"
+
+  echo-patched:
+    image: python:3.11
+    container_name: echo-patched
+    working_dir: /app
+    volumes:
+      - ./patched:/app
+    command: bash -c "pip install flask && python app.py"
+    ports:
+      - "5002:5000"
